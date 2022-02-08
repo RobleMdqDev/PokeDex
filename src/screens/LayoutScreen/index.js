@@ -4,21 +4,39 @@ import Footer from "../../components/Footer";
 import HeroBanner from "../../components/HeroBanner";
 import LoadingComponent from "../../components/LoadingComponent/LoadingComponent";
 import { getAccessToken } from "../../functions/validateToken";
-import { fetchPokemons } from "../../store/actions";
-import { userStatusSelector } from "../../store/reducers/userReducer";
+import { fetchPokemons, getUser } from "../../store/actions";
+import {
+  userSelector,
+  userStatusSelector,
+} from "../../store/reducers/userReducer";
 import Login from "../Login/Login";
 
 const LayoutScreen = ({ children }) => {
   const status = useSelector(userStatusSelector);
-
+  const userSelect = useSelector(userSelector);
   const [loginValidate, setLoginValidate] = useState(false);
 
   const dispatch = useDispatch();
 
+  const handleSession = async () => {
+    const user = {
+      token: sessionStorage.getItem("token"),
+      id: sessionStorage.getItem("id"),
+      username: sessionStorage.getItem("user"),
+    };
+    if (user.token && user.id && user.username) {
+      dispatch(getUser(user));
+      dispatch({
+        type: "RELOAD",
+        payload: { token: user.token, status: "OK", user: userSelect },
+      });
+    }
+  };
+
   useEffect(() => {
+    handleSession();
     dispatch(fetchPokemons());
-    console.log('EJECUTANDO USE EFFECT DISPATCH POKEMONS')
-  },[]);
+  }, []);
 
   useEffect(() => {
     status === "OK" && getAccessToken()
@@ -35,10 +53,10 @@ const LayoutScreen = ({ children }) => {
         flexDirection: "column",
       }}
     >
-      <LoadingComponent/>   
+      <LoadingComponent />
       <HeroBanner />
       {children}
-         
+
       <Footer />
     </div>
   );

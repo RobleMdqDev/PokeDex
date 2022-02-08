@@ -7,9 +7,7 @@ const BadgeComponent = ({ types, evolutions }) => {
     ? require(`../../img/badges/badge_${types.type.name}.png`)
     : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolutions.id}.png`;
 
-const name = types
-    ? types.type.name
-    : evolutions.name
+  const name = types ? types.type.name : evolutions.name;
   useEffect(() => {
     VanillaTilt.init(document.querySelectorAll(".BC-badge"), {
       max: 25,
@@ -21,12 +19,7 @@ const name = types
 
   return (
     <div className="BC-badge-area">
-      <img
-        className="BC-badge"
-        name={name}
-        src={img}
-        alt="pokemon badge"
-      />
+      <img className="BC-badge" name={name} src={img} alt="pokemon badge" />
       <span className="BC-type">{name}</span>
     </div>
   );

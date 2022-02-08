@@ -1,6 +1,6 @@
 
 .UP-wrapper{    
-    width: 100%;    
+    width: 98vw;    
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .UP-img-area{     
-    width: 600px;    
+    width: 550px;    
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@
     gap: 5px;
 }
 
-.UP-buttons a {   
+.UP-buttons button {   
     text-decoration: none;
     width: 49%;
     padding: 10px;
@@ -110,6 +110,6 @@
     user-select: none;
 }   
 
-.UP-buttons a:active {   
+.UP-buttons button:active {   
     box-shadow: 0 0 10px black inset;
 }

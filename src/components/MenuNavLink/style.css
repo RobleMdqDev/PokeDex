@@ -1,5 +1,7 @@
 /* Style the navbar */
 #navbar {
+  display: flex;
+  justify-content: space-between;
   overflow: hidden;   
   background: linear-gradient(0deg, rgba(3,0,0,1) 60%, rgba(3,3,3,0) 100%);
   padding: 45px 10px; 
@@ -58,4 +60,24 @@
         margin: 0 auto;    
         margin-top: 10px!important;
         transform: translateY(0)!important;      
+  }
+
+
+  .nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50px;
+    border: none;
+    border-radius: 100%;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+   
+  }
+
+  .nav-button img{
+    width: 100%;
   }

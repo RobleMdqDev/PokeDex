@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import VanillaTilt from "vanilla-tilt";
 import starIcon from "../../img/star-icon.svg";
 import BadgeComponent from "../BadgeComponent.js";
 import "./style.css";
 import { fillData } from "./functions";
 import { useDispatch, useSelector } from "react-redux";
-import { userSelector, userTeamSelector } from "../../store/reducers/userReducer";
+import {
+  userSelector,
+  userTeamSelector,
+} from "../../store/reducers/userReducer";
 import { getUser, updateMyTeam } from "../../store/actions";
 
 const DetailsPokemon = () => {
@@ -15,29 +18,36 @@ const DetailsPokemon = () => {
   const [pokemonData, setPokemonData] = useState();
   const [pokemonSpeciesData, setPokemonSpeciesData] = useState();
   const [pokemonChainEvolution, setPokemonChainEvolution] = useState();
+  const [isTeam, setIsTeam] = useState(false)
   const user = useSelector(userSelector);
-  const userTeam = useSelector(userTeamSelector);
-  const isTeam = userTeam.split('-').includes(id); 
+  const userTeam = useSelector(userTeamSelector); 
+  const history = useNavigate() 
 
   const getData = async () => {
     dispatch({ type: "LOADING", payload: true });
-    const { pokemonSpeciesData, pokemonData, pokemonEvolutions } =
-      await fillData(id);
+    const resp = await fillData(id);
+    dispatch({ type: "LOADING", payload: false });
+    if(!resp) return history('*')
+    const { pokemonSpeciesData, pokemonData, pokemonEvolutions } = resp 
+    console.log('POKEMONS', pokemonSpeciesData)
     setPokemonData(pokemonData);
     setPokemonSpeciesData(pokemonSpeciesData);
-    setPokemonChainEvolution(pokemonEvolutions);
-    dispatch({ type: "LOADING", payload: false });
-  };  
+    setPokemonChainEvolution(pokemonEvolutions);    
+  };
 
   useEffect(() => {
-    getData();
-  }, [id]);
+      if(userTeam){
+        getData();
+        setIsTeam(userTeam.split("-").includes(id)) 
+      }
+    
+  }, [id, userTeam]);
 
-  const handleTeam = () => {   
-    dispatch(updateMyTeam(id, user)); 
-    dispatch(getUser(user))   
-  }  
-  
+  const handleTeam = () => {
+    dispatch(updateMyTeam(id, user));
+    dispatch(getUser(user));
+  };
+
   useEffect(() => {
     VanillaTilt.init(document.querySelector(".DP-img"), {
       max: 30,
@@ -73,13 +83,18 @@ const DetailsPokemon = () => {
           <div className="DP-description-area">
             <div className="DP-buttons">
               <Link to={"/"}>Go Back!</Link>
-              <a href="#/" onClick={()=>{handleTeam()}}>
+              <a
+                href="#/"
+                onClick={() => {
+                  handleTeam();
+                }}
+              >
                 {isTeam ? "Release!" : "Catch!"}
-              </a>              
+              </a>
             </div>
             <div className="DP-badges">
-              {pokemonData.types.map((types) => (
-                <BadgeComponent types={types} />
+              {pokemonData.types.map((types, index) => (
+                <BadgeComponent key={index+'BC'} types={types} />
               ))}
             </div>
             <div className="DP-info">
@@ -99,7 +114,7 @@ const DetailsPokemon = () => {
                     <strong>shape:</strong> {pokemonSpeciesData.shape.name}
                   </p>
                   {pokemonData.stats.map((stat) => (
-                    <p className="DP-about">
+                    <p key={stat.stat.name} className="DP-about">
                       <strong>{stat.stat.name}:</strong> {stat.base_stat}
                     </p>
                   ))}
@@ -108,8 +123,8 @@ const DetailsPokemon = () => {
             </div>
           </div>
           <div className="DP-badges">
-            {pokemonChainEvolution.map((evolutions) => (
-              <Link to={`/pokemon/${evolutions.id}`}>
+            {pokemonChainEvolution.map((evolutions, index) => (
+              <Link key={index+'LINK'} to={`/pokemon/${evolutions.id}`}>
                 <BadgeComponent evolutions={evolutions} />
               </Link>
             ))}

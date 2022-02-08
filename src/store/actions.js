@@ -3,30 +3,47 @@ import { customAlert } from "../functions/sweetAlert";
 
 //USER ACTIONS
 
-export const loadUser = (userData) => async (dispatch) => {  
-
+export const loadUser = (userData, action) => async (dispatch) => {
+  const actionType = action ? action : "login";
   try {
     dispatch({ type: "LOADING", payload: true });
     const resp = await fetchCustom({
       keyValue: false,
       METHOD: "post",
       API_URL: "http://localhost:8000",
-      BASE: "login",
+      BASE: actionType,
       data: {
         ...userData,
       },
     });
 
-    dispatch({
-      type: "LOGIN",
-      payload: resp,
-    });
+    if (!resp.status) {
+      document.querySelector(".login-area").classList.add("pokeball-fail");
+      setTimeout(() => {
+        document.querySelector(".login-area").classList.remove("pokeball-fail");
+      }, 700);
+      return customAlert({
+        description: { title: resp.message, text: "" },
+        icon: { icon: "error" },
+        position: { position: "top-right", toast: true },
+        timer: { timer: 2500 },
+        confirm: { showConfirmButton: false },
+      });
+    }
+
+    document.querySelector(".login-area").classList.add("pokeball-success");
+    setTimeout(() => {
+      dispatch({
+        type: "LOGIN",
+        payload: resp,
+      });
+    }, 700);
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
     customAlert({
-      description:{title: 'Error', description:error.message},
-      icon:{icon: 'error'}
-    })
+      description: { title: "Error", text: error.message },
+      icon: { icon: "error" },
+    });
     dispatch({ type: "LOADING", payload: false });
   }
 };
@@ -37,36 +54,38 @@ export const logoutUser = () => async (dispatch) => {
     customAlert({
       description: {
         title: "You are about to log out!",
-        text: "You won't be able to revert this!",
+        text: " ",
       },
       cancel: true,
       img: { imageUrl: require("../img/logout.png") },
       then: async () => {
-        await fetchCustom({
-          keyValue: false,
+        const resp = await fetchCustom({
+          keyValue: true,
           METHOD: "put",
           API_URL: "http://localhost:8000",
           BASE: "logout",
-          data: 'Logout'
         });
-        
-        dispatch({
-          type: "LOGOUT"
+        customAlert({
+          description: { title: "Success", text: resp.message },
+          icon: { icon: "success" },
+        });
+        await dispatch({
+          type: "LOGOUT",
         });
       },
     });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
     customAlert({
-      description:{title: 'Error', description:error.message},
-      icon:{icon: 'error'}
-    })
+      description: { title: "Error", text: error.message },
+      icon: { icon: "error" },
+    });
     dispatch({ type: "LOADING", payload: false });
   }
 };
 
 export const getUser = (user) => async (dispatch) => {
-  if (!user && !sessionStorage.getItem("user"))
+  if (!user && !sessionStorage.getItem("user")) {
     return customAlert({
       description: {
         title: "Error!",
@@ -74,9 +93,10 @@ export const getUser = (user) => async (dispatch) => {
       },
       icon: { icon: "error" },
     });
+  }
   const userSelected = user.username
     ? user.username
-    : sessionStorage.getItem("user");  
+    : sessionStorage.getItem("user");
   try {
     dispatch({ type: "LOADING", payload: true });
     const resp = await fetchCustom({
@@ -95,36 +115,45 @@ export const getUser = (user) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
     customAlert({
-      description:{title: 'Error', description:error.message},
-      icon:{icon: 'error'}
-    })
+      description: { title: "Error", text: error.message },
+      icon: { icon: "error" },
+    });
+
     dispatch({ type: "LOADING", payload: false });
   }
 };
 
 export const updateUser = (user, data) => async (dispatch) => {
-      console.log(data)
-      dispatch({ type: "LOADING", payload: true });
-      await fetchCustom({
-        METHOD: "put",
-        API_URL: "http://localhost:8000",
-        BASE: "users",
-        ID: user.id,
-        data: data,
-      });
-      await dispatch(getUser(user));
-      await customAlert({
-        description: {
-          title: 'Done!',
-          text: " ",
-        },        
-        img: {
-          imageUrl: require('../img/pokegif.gif'),
-        }
-      });
-      dispatch({ type: "LOADING", payload: false });
+  //
+  try {
+    dispatch({ type: "LOADING", payload: true });
+    await fetchCustom({
+      METHOD: "put",
+      API_URL: "http://localhost:8000",
+      BASE: "users",
+      ID: user.id,
+      data: data,
+    });
+    await dispatch(getUser(user));
+    await customAlert({
+      description: {
+        title: "Done!",
+        text: " ",
+      },
+      img: {
+        imageUrl: require("../img/pokegif.gif"),
+      },
+    });
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    customAlert({
+      description: { title: "Error", text: error.message },
+      icon: { icon: "error" },
+    });
 
-}
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
 
 //POKEMON ACTIONS
 
@@ -135,25 +164,23 @@ export const fetchPokemons = () => async (dispatch) => {
       keyValue: false,
       API_URL: `https://pokeapi.co/api/v2/pokedex/1`,
     });
-    
+
     dispatch({
       type: "FETCH_POKEMONS",
       payload: resp,
     });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
-    console.log(error);
     dispatch({ type: "LOADING", payload: false });
   }
 };
 
-export const updateMyTeam = (pokeID, user) => async (dispatch) => {  
-
+export const updateMyTeam = (pokeID, user) => async (dispatch) => {
   const urlPokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png`;
 
   let userTeam = "";
   let titleAlert = `Do you want to add this pokemon to your team?`;
-  
+
   if (user.team === null) {
     userTeam = `${pokeID}`;
   } else if (
@@ -180,21 +207,28 @@ export const updateMyTeam = (pokeID, user) => async (dispatch) => {
       },
     });
   }
+  try {
+    const data = { team: userTeam };
 
-  const data = { team: userTeam };
+    customAlert({
+      description: {
+        title: titleAlert,
+        text: " ",
+      },
+      cancel: true,
+      img: {
+        imageUrl: urlPokemon,
+      },
+      then: async () => {
+        await dispatch(updateUser(user, data));
+      },
+    });
+  } catch (error) {
+    customAlert({
+      description: { title: "Error", text: error.message },
+      icon: { icon: "error" },
+    });
 
-  customAlert({
-    description: {
-      title: titleAlert,
-      text: " ",
-    },
-    cancel: true,
-    img: {
-      imageUrl: urlPokemon,
-    },
-    then: async () => {
-      dispatch(updateUser(user, data))
-    },
-  });  
-
+    dispatch({ type: "LOADING", payload: false });
+  }
 };

@@ -1,0 +1,38 @@
+
+.P404-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 100%;
+    background-image: url(../../img/pikachu.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.P404-number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;   
+}
+
+.P404-number img{
+    width: 20vw;
+}
+
+.P404-number p {
+    display: block;
+    font-size: 20vw;
+    height: fit-content;
+    color: red;
+    padding: 0;
+}
+
+.P404-title{
+    font-size: 4vh;
+}
