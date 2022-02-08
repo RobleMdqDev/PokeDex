@@ -1,0 +1,106 @@
+.list-head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;  
+    z-index: 10;  
+}
+.list-head h1, .list-head p {
+    display: block;
+    z-index: 10;
+}
+
+.searchbar-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+    z-index: 10;
+    
+}
+
+.searchbar-input{
+    display: block;
+    width: 70%;
+    min-width: 300px; 
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);
+    z-index: 10;
+}
+
+.searchbar-select{
+    display: block;
+    width: 20%;   
+    min-width: 200px; 
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);
+    z-index: 10;
+}
+
+.searchbar-icon{
+    display: block;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.1s ease-in-out;  
+    z-index: 10;  
+}
+
+.searchbar-icon:hover{
+    transform: scale(1.1)
+            translateY(-5px);
+}
+
+.searchbar-icon:active{
+    transform: translateY(-1px);
+}
+
+.searchbar-icon img{
+    width: 55px;
+    height: 55px;
+  
+}
+.pagination-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    z-index: 10;
+}
+.pagination-button{
+    display: block;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    margin: 0 5px
+}
+
+.pagination-input{
+    display: block;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    text-align: center;
+}
+
+.list-elements{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 100vw;
+    padding: 5px;
+}

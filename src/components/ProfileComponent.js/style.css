@@ -1,0 +1,115 @@
+
+.UP-wrapper{    
+    width: 100%;    
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;    
+}
+
+.UP-img-area{     
+    width: 600px;    
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    margin: 5px;   
+}
+.UP-inner-area{ 
+    position: relative;   
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    margin: 5px;    
+}
+
+.UP-img{
+    height: 400px;     
+}
+
+.UP-description-area{
+    display: flex;
+    justify-content: space-between;   
+    flex-direction: column;
+    padding: 30px;
+    height: 100%;   
+    min-width: 400px;
+}
+
+.UP-name{                        
+    font-size: 26px;
+    font-weight: 500;    
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.UP-about{
+    color: #020000ab;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.UP-stats-title{
+    text-align: center;
+    font-size: 25px;
+}
+
+.UP-stats{
+    text-align: start;    
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);   
+    margin: 5px
+}
+
+.UP-avatars {
+    min-width: 400px;
+}
+.UP-avatars-image {
+    height: 200px;
+    transition: all 0.5s ease;
+}
+
+.UP-avatars-image:hover{
+    transform: scale(1.1);
+}
+
+.UP-buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.UP-buttons a {   
+    text-decoration: none;
+    width: 49%;
+    padding: 10px;
+    color: black;
+    font-size: 20px;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);
+    cursor: pointer;
+    user-select: none;
+}   
+
+.UP-buttons a:active {   
+    box-shadow: 0 0 10px black inset;
+}

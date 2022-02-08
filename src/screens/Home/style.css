@@ -1,0 +1,39 @@
+.home-background{
+    min-height: '100vh'; 
+    display: 'flex'; 
+    align-items: 'center'; 
+    background-color: '#f2f2f2'; 
+    flex-direction: 'column';
+}
+
+.home-pokeball{
+    position: absolute;
+    animation: pokeballMove 4s linear infinite;
+    z-index: -10;
+}
+
+@keyframes pokeballMove {
+    0% {
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.home-pokeball:nth-child(1){
+    width: 100px;
+    top: calc(20% + 700px);
+    left: 20%;
+   
+}
+.home-pokeball:nth-child(2){
+    width: 150px;
+    top: calc(50% + 700px);
+    left: 50%;
+}
+.home-pokeball:nth-child(3){
+    width: 125px;
+    top: calc(80% + 700px);
+    left: 80%;
+}

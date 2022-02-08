@@ -1,0 +1,192 @@
+
+.login-background{    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-image: url('../../img/loginbackground.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.login-background::before{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;    
+    z-index: 110;   
+    background: radial-gradient(circle,rgba(96, 110, 205, 0.747) 30%, rgba(73, 87, 184, 0.555) 40%, rgba(21, 13, 175, 0.493) 50%, rgba(4, 4, 4, 0) 100%);
+    backdrop-filter: blur(0px) ;
+    
+}
+
+.login-background::after{
+    content: '';
+    position: absolute;
+    top: calc(50% + 256px);
+    width: 100%;
+    height: 250px;    
+    background: rgb(255,251,251);    
+    background: linear-gradient(rgba(5, 5, 5, 0.692) 5%, rgba(0, 0, 0, 0.301) 25%, rgba(255, 255, 255, 0.041) 55%,rgba(255, 255, 255, 0) 70% );   
+    border-radius:0;    
+    z-index: 110;
+    border-top: 1px solid black;
+}
+
+.login-signup{
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    color: white;
+    margin-top: 10px;
+    user-select: none;
+}
+.login-signup:hover{
+    color: lightblue;
+    cursor: pointer;
+}
+
+.login-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 490px;
+    height: 490px;
+    border-radius: 500px;    
+    background: black;
+    z-index: 120;
+    transition: all 1s ease-in-out;    
+}
+
+
+@keyframes pokeballFail {
+    0%{transform: translateX(0px) rotate(0deg);}    
+    25% {transform: translateX(80px) rotate(20deg);}
+    50%{transform: translateX(0px) rotate(0deg)}
+    75% {transform: translateX(-80px) rotate(-20deg);}        
+    100%{transform: translateX(0px) rotate(0deg);}
+}
+
+@keyframes pokeballSuccess {
+    0%{transform: scale(1);
+        opacity: 1;}         
+    100%{transform: scale(3);
+        opacity: 0;}
+}
+
+.login-area::before{
+    content: '';
+    position: relative;
+    top: -2%;
+    width: 500px;
+    height: 250px;
+    background: rgb(120,0,0);
+    background: linear-gradient(90deg, rgb(90, 0, 0) 0%, rgba(205,13,13,1) 16%, rgba(255,0,0,1) 33%, rgba(255,0,0,1) 60%, rgba(171,10,10,1) 83%, rgb(90, 0, 0) 100%);
+    background-position: center;    
+    border-radius: 250px 250px 0 0;
+   
+}
+
+.login-area::after{
+    content: '';
+    position: relative;
+    bottom: -2%;
+    width: 500px;
+    height: 250px;    
+    background: rgb(255,251,251);    
+    background: radial-gradient(circle, rgba(255,251,251,1) 26%, rgba(238,238,238,1) 45%, rgba(202,202,202,1) 66%, rgba(137,137,137,1) 81%, rgba(90,85,85,1) 99%);   
+    border-radius: 0 0 250px 250px;    
+    
+    
+}
+.login-form::after{
+    content: '';
+    position: absolute;
+    top: -125px;
+    left: calc(50% - 252px);
+    width: 505px;
+    height: 250px;    
+    background: rgb(255,251,251);    
+    background: linear-gradient(rgba(255, 255, 255, 0.671) 5%, rgba(255, 255, 255, 0.096) 30%, rgba(255, 255, 255, 0) 40%,rgba(255, 255, 255, 0) 100% );   
+    border-radius:250px 250px 0 0;    
+    z-index: 100;    
+}
+
+.login-form::before{
+    content: '';
+    position: absolute;
+    bottom: -188px;
+    left: calc(50% - 252px);
+    width: 503px;
+    height: 250px;    
+    background: rgb(255,251,251);    
+    background: linear-gradient(rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 0) 25%,rgba(0, 0, 0, 0.103) 45%, rgba(0, 0, 0, 0.671) 100% );   
+    border-radius:0 0 250px 250px;    
+    z-index:100;
+}
+
+
+.login-form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    z-index: 200;
+    height:200px;
+    position: absolute;
+    top: calc(50% - 130px)
+   
+}
+
+.login-button{   
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    border: 18px solid black;
+    background: radial-gradient(circle, rgb(255, 255, 255) 20%, rgb(236, 236, 236) 45%, rgb(201, 201, 201) 60%, rgb(206, 206, 206) 75%, rgb(83, 83, 83) 85%);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    z-index: 300;   
+}
+
+.login-button:active{
+    box-shadow: inset 0 0 10px black;
+}
+
+.login-input{
+    display: block;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    z-index: 140;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+    margin-bottom: 5px;
+    font-size: 20px;   
+    letter-spacing: 0.8px;
+    color: rgb(255, 255, 255);
+    text-shadow:        
+        0 0 1px rgb(0, 0, 0),
+        0 0 2px rgb(0, 0, 0),
+        0 0 2px rgb(0, 0, 0),
+        0 0 3px rgb(0, 0, 0);
+    overflow: hidden;
+        
+}
+
+.login-input:focus{   
+    outline: none;
+}

@@ -1,0 +1,151 @@
+.itemGlass {
+    background: linear-gradient(129deg, rgba(255,255,255,0.4) 13%, rgba(255,255,255,0.1) 68%);
+}
+
+.star-icon{
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 60px;    
+}
+.span-icon{
+    position: absolute;
+    top: 8px;
+    left: -12px;
+    width: 60px;
+    color: whitesmoke;
+    z-index: 300;
+}
+
+.wrapper,
+.wrapper .img-area,
+.ability-icons a,
+.buttons a  {
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(8,7,16,0.6);
+    
+}
+
+
+.wrapper{
+position: relative;
+width: 350px;
+padding: 30px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+.wrapper .img-area{                    
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.inner-area{
+    transition: 0.4s ease;
+}
+
+.inner-area:hover{
+    transform: scale(1.2);
+   
+} 
+
+
+.inner-area img{
+    height: 120%;
+    width: 120%;         
+}
+
+.wrapper .description-area{
+    padding: 30px 0;
+}
+
+.wrapper .name{                        
+    font-size: 23px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    margin: 10px 0 5px 0;
+}
+.wrapper .about{
+    color: #020000ab;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.wrapper .ability-icons{
+    margin: 15px 0 25px 0;
+   
+}
+.ability-icons a{
+     position: relative;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    display: inline-flex;
+    text-decoration: none;
+    border-radius: 50%;
+}                       
+
+.ability-icons a:hover::before,
+.wrapper .icon:hover::before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+    background: #ecf0f3c2;
+    box-shadow: inset -3px -3px 7px #ffffff;
+    color: black;
+                  
+}
+
+.ability-icons a i{
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    line-height: 35px;
+}
+    .ability-icons a:nth-last-child(1) i{
+        color: #13d151;
+    }
+    .ability-icons a:nth-last-child(2) i{
+        color: #e6ba12;
+    }
+    .ability-icons a:nth-last-child(3) i{
+        color: #1da9e9;
+    }
+    .ability-icons a:nth-last-child(4) i{
+        color: #f23400;
+    }
+
+.wrapper .buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.buttons a {   
+    text-decoration: none;
+    width: 48%;
+    padding: 10px;
+    color: black;
+    font-size: 1rem;
+}
+
+.buttons a:active {   
+    box-shadow: 0 0 10px black inset;
+}

@@ -1,0 +1,24 @@
+.LC-area{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 300;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.LC-img{
+    position: absolute;
+    top: 200px;
+    opacity: 0.9;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    background-image: url(../../img/pokeloading.gif);
+    background-size: 500px;
+    background-position: center;
+   
+}
