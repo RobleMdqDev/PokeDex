@@ -50,7 +50,7 @@ const ListComponent = () => {
   };
 
   useEffect(() => {
-    setDataFilter(pokemonsData);
+    if(pokemonsData) setDataFilter(pokemonsData);
   }, [pokemonsData]);
 
   useEffect(() => {
@@ -102,14 +102,14 @@ const ListComponent = () => {
       </div>
 
       <div className="list-elements">
-        {dataFilter
+        {dataFilter ? dataFilter
           .map((element, index) => (
             <CardPokemon key={index + ""} element={element.pokemon_species} />
           ))
           .filter(
             (element, index) =>
               index >= setList.minSet && index <= setList.maxSet
-          )}
+          ) : ''}
       </div>
       <div className="pagination-area">
         <button

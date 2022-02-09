@@ -1,4 +1,3 @@
-import { customAlert } from "./sweetAlert";
 
 export const fetchCustom = async ({
   keyValue = true,
@@ -38,13 +37,6 @@ export const fetchCustom = async ({
       .catch((error)=>{throw new Error(error)});
     return response;
   } catch (error) {
-    throw new Error({error: error.message})
-    // customAlert({
-    //   description: {
-    //     title: "Error!",
-    //     text: error.message,
-    //   },
-    //   icon: { icon: "error" },
-    // });
+    throw new Error({error: error.message})    
   }
 };

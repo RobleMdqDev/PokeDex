@@ -27,9 +27,8 @@ const DetailsPokemon = () => {
     dispatch({ type: "LOADING", payload: true });
     const resp = await fillData(id);
     dispatch({ type: "LOADING", payload: false });
-    if(!resp) return history('*')
-    const { pokemonSpeciesData, pokemonData, pokemonEvolutions } = resp 
-    console.log('POKEMONS', pokemonSpeciesData)
+    if(!resp) return history('/*')
+    const { pokemonSpeciesData, pokemonData, pokemonEvolutions } = resp    
     setPokemonData(pokemonData);
     setPokemonSpeciesData(pokemonSpeciesData);
     setPokemonChainEvolution(pokemonEvolutions);    

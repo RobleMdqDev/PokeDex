@@ -20,7 +20,7 @@ const CardPokemon = ({ element }) => {
   const [isTeam, setIsTeam] = useState(false);
 
   useEffect(() => {
-    setIsTeam(userTeam.split("-").includes(pokeID));
+    if(userTeam)setIsTeam(userTeam.split("-").includes(pokeID));
   }, [userTeam, pokeID]);
 
   const handleTeam = () => {

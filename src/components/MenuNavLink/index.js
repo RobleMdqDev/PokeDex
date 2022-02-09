@@ -66,6 +66,7 @@ const MenuNavLink = () => {
           <NavLink to="/myteam">MyTeam</NavLink>
         </li>
       </ul>
+      <NavLink to="/">
       <button
         className="nav-button"
         onClick={() => {
@@ -75,6 +76,7 @@ const MenuNavLink = () => {
         <img src={icon} alt="icon pokeball" />
         Logout
       </button>
+      </NavLink>
     </nav>
   );
 };
