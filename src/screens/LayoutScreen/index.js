@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import HeroBanner from "../../components/HeroBanner";
 import LoadingComponent from "../../components/LoadingComponent/LoadingComponent";
@@ -15,7 +16,7 @@ const LayoutScreen = ({ children }) => {
   const status = useSelector(userStatusSelector);
   const userSelect = useSelector(userSelector);
   const [loginValidate, setLoginValidate] = useState(false);
-
+  
   const dispatch = useDispatch();
 
   const handleSession = async () => {
@@ -24,7 +25,7 @@ const LayoutScreen = ({ children }) => {
       id: sessionStorage.getItem("id"),
       username: sessionStorage.getItem("user"),
     };
-    if (user.token && user.id && user.username) {
+    if (user.token && user.id && user.username && !status) {      
       dispatch(getUser(user));
       dispatch({
         type: "RELOAD",

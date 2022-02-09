@@ -31,16 +31,18 @@ const DetailsPokemon = () => {
     const { pokemonSpeciesData, pokemonData, pokemonEvolutions } = resp    
     setPokemonData(pokemonData);
     setPokemonSpeciesData(pokemonSpeciesData);
-    setPokemonChainEvolution(pokemonEvolutions);    
+    setPokemonChainEvolution(pokemonEvolutions); 
+       
   };
 
-  useEffect(() => {
-      if(userTeam){
-        getData();
-        setIsTeam(userTeam.split("-").includes(id)) 
-      }
-    
-  }, [id, userTeam]);
+  useEffect(() => {      
+        getData();           
+  }, [user, id]);
+ 
+  useEffect(()=>{
+    if(!userTeam) return setIsTeam(false)
+    setIsTeam(userTeam.split("-").includes(id));    
+  },[userTeam, id]);
 
   const handleTeam = () => {
     dispatch(updateMyTeam(id, user));

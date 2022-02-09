@@ -30,7 +30,7 @@ export const loadUser = (userData, action) => async (dispatch) => {
         confirm: { showConfirmButton: false },
       });
     }
-
+    
     document.querySelector(".login-area").classList.add("pokeball-success");
     setTimeout(() => {
       dispatch({
@@ -108,7 +108,7 @@ export const getUser = (user) => async (dispatch) => {
       ID: userSelected,
     });
 
-    dispatch({
+    await dispatch({
       type: "GET_USER",
       payload: resp,
     });
@@ -133,8 +133,7 @@ export const updateUser = (user, data) => async (dispatch) => {
       BASE: "users",
       ID: user.id,
       data: data,
-    });
-    await dispatch(getUser(user));
+    });    
     await customAlert({
       description: {
         title: "Done!",
@@ -144,7 +143,8 @@ export const updateUser = (user, data) => async (dispatch) => {
         imageUrl: require("../img/pokegif.gif"),
       },
     });
-    dispatch({ type: "LOADING", payload: false });
+    await dispatch(getUser(user));
+    await dispatch({ type: "LOADING", payload: false });
   } catch (error) {
     customAlert({
       description: { title: "Error", text: error.message },
@@ -219,8 +219,8 @@ export const updateMyTeam = (pokeID, user) => async (dispatch) => {
       img: {
         imageUrl: urlPokemon,
       },
-      then: async () => {
-        await dispatch(updateUser(user, data));
+      then: () => {
+        dispatch(updateUser(user, data));
       },
     });
   } catch (error) {

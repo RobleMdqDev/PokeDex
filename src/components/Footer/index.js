@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { trainers } from "../../data/trainers";
 
 import {
-  userSelector,
-  userTeamSelector,
+  userSelector  
 } from "../../store/reducers/userReducer";
 import "./style.css";
 
