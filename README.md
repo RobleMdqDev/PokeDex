@@ -4,12 +4,13 @@ Contacto: [Linkedin](https://www.linkedin.com/in/albertorobledomdq/). Email: Rob
     
 ![Image text](https://github.com/RobleMdqDev/PokeDex/blob/main/src/img/pokeball.jpg)
 
-## Available Scripts
+## Start by creating a user!
 
-In the project directory, you can run:
+![Image text](https://github.com/RobleMdqDev/PokeDex/blob/main/src/img/readme/readme-login.png)
+### Also try to make the login fail, to see the animations of the pokeball ![Icon](https://github.com/RobleMdqDev/PokeDex/blob/main/src/img/poke_ball_icon.png)
 
-### `npm start`
+![Image text](https://github.com/RobleMdqDev/PokeDex/blob/main/src/img/readme/fail-login.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+
 
