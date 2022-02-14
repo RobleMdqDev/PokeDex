@@ -1,3 +1,4 @@
+import { API_URL_POKEMON, API_URL_SPECIES } from "../../constants";
 import { fetchCustom } from "../../functions/fetchCustom";
 
 export const getEvolutionPokemons = (chain) => {
@@ -22,12 +23,12 @@ export const fillData = async (id) => {
   try {
     const pokemonData = await fetchCustom({
       keyValue: false,
-      API_URL: `https://pokeapi.co/api/v2/pokemon/${id}`,
+      API_URL: API_URL_POKEMON(id),
     });
   
     const pokemonSpeciesData = await fetchCustom({
       keyValue: false,
-      API_URL: `https://pokeapi.co/api/v2/pokemon-species/${id}`,
+      API_URL: API_URL_SPECIES(id),
     });
   
     const pokemonChainEvolution = await fetchCustom({

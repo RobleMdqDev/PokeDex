@@ -1,3 +1,5 @@
+import { FETCH_POKEMONS } from "../../constants";
+
 const initialState = {
   area: "",
   pokemonsData: [],
@@ -5,7 +7,7 @@ const initialState = {
 
 const pokemonReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_POKEMONS":
+    case FETCH_POKEMONS:
       return {
         ...state,
         area: action.payload.descriptions[0].description,

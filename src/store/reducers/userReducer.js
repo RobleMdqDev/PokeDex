@@ -1,3 +1,5 @@
+import { GET_USER, LOADING, LOGIN, LOGOUT, RELOAD } from "../../constants";
+
 const initialState = {
   user: {},
   token: "",
@@ -8,14 +10,14 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_USER":
+    case GET_USER:
       return {
         ...state,
         user: action.payload,
         team: action.payload.team,
         loading: false,
       };
-    case "LOGIN":
+    case LOGIN:
       sessionStorage.setItem("token", action.payload.token);
       sessionStorage.setItem("user", action.payload.user.username);
       sessionStorage.setItem("id", action.payload.user.id);
@@ -27,7 +29,7 @@ const userReducer = (state = initialState, action) => {
         token: action.payload.token,
         loading: false,
       };
-    case "RELOAD":
+    case RELOAD:
       return {
         ...state,
         status: action.payload.status,
@@ -36,7 +38,7 @@ const userReducer = (state = initialState, action) => {
         token: action.payload.token,
         loading: false,
       };
-    case "LOGOUT":
+    case LOGOUT:
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("id");
@@ -49,7 +51,7 @@ const userReducer = (state = initialState, action) => {
         team: "",
         status: "",
       };
-    case "LOADING":
+    case LOADING:
       return {
         ...state,
         loading: action.payload,

@@ -7,6 +7,7 @@ import { trainers } from "../../data/trainers";
 
 import VanillaTilt from "vanilla-tilt";
 import { updateUser } from "../../store/actions";
+import { SAVE_AVATAR } from "../../constants";
 
 const ProfileComponent = () => {
   const dispatch = useDispatch();
@@ -78,11 +79,11 @@ const ProfileComponent = () => {
                 handleAvatar(e);
               }}
             >
-              {trainers.map((element, index) => (
+              {trainers.map((element) => (
                 <img
                   className="UP-avatars-image"
-                  key={index}
-                  id={index}
+                  key={element.id}
+                  id={element.id}
                   src={element.avatar}
                   alt="avatar"
                 />
@@ -94,7 +95,7 @@ const ProfileComponent = () => {
                   handleUpdateUser();
                 }}
               >
-                Save New Avatar!
+                {SAVE_AVATAR}
               </button>
             </div>
           </div>

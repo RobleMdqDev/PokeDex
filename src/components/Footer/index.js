@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IMG_POKEMON } from "../../constants";
 import { trainers } from "../../data/trainers";
 
 import {
@@ -28,7 +29,7 @@ const Footer = () => {
             return poke ? (
               <img
                 key={poke}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke}.png`}
+                src={IMG_POKEMON(poke)}
                 alt="pokemon icon"
               />
             ) : (

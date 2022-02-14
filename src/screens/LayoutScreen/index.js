@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import Footer from "../../components/Footer";
 import HeroBanner from "../../components/HeroBanner";
 import LoadingComponent from "../../components/LoadingComponent/LoadingComponent";
@@ -36,7 +36,7 @@ const LayoutScreen = ({ children }) => {
 
   useEffect(() => {
     handleSession();
-    dispatch(fetchPokemons());
+    dispatch(fetchPokemons());    
   }, []);
 
   useEffect(() => {

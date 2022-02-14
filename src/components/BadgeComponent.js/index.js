@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import VanillaTilt from "vanilla-tilt";
+import { IMG_POKEMON } from "../../constants";
 import "./style.css";
 
 const BadgeComponent = ({ types, evolutions }) => {
   const img = types
     ? require(`../../img/badges/badge_${types.type.name}.png`)
-    : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolutions.id}.png`;
+    : IMG_POKEMON(evolutions.id);
 
   const name = types ? types.type.name : evolutions.name;
   useEffect(() => {

@@ -11,6 +11,7 @@ import {
   userTeamSelector,
 } from "../../store/reducers/userReducer";
 import { getUser, updateMyTeam } from "../../store/actions";
+import { IMG_POKEMON, LOADING } from "../../constants";
 
 const DetailsPokemon = () => {
   const { id } = useParams();
@@ -24,9 +25,9 @@ const DetailsPokemon = () => {
   const history = useNavigate() 
 
   const getData = async () => {
-    dispatch({ type: "LOADING", payload: true });
+    dispatch({ type: LOADING, payload: true });
     const resp = await fillData(id);
-    dispatch({ type: "LOADING", payload: false });
+    dispatch({ type: LOADING, payload: false });
     if(!resp) return history('/*')
     const { pokemonSpeciesData, pokemonData, pokemonEvolutions } = resp    
     setPokemonData(pokemonData);
@@ -76,7 +77,7 @@ const DetailsPokemon = () => {
               <img src={starIcon} className="DP-star-icon" alt="star-icon" />
               <img
                 className="DP-img"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                src={IMG_POKEMON(id)}
                 alt="pokemon"
               />
             </div>
@@ -94,8 +95,8 @@ const DetailsPokemon = () => {
               </a>
             </div>
             <div className="DP-badges">
-              {pokemonData.types.map((types, index) => (
-                <BadgeComponent key={index+'BC'} types={types} />
+              {pokemonData.types.map((types) => (
+                <BadgeComponent key={types.type.name} types={types} />
               ))}
             </div>
             <div className="DP-info">
@@ -124,8 +125,8 @@ const DetailsPokemon = () => {
             </div>
           </div>
           <div className="DP-badges">
-            {pokemonChainEvolution.map((evolutions, index) => (
-              <Link key={index+'LINK'} to={`/pokemon/${evolutions.id}`}>
+            {pokemonChainEvolution.map((evolutions) => (
+              <Link key={evolutions.id} to={`/pokemon/${evolutions.id}`}>
                 <BadgeComponent evolutions={evolutions} />
               </Link>
             ))}

@@ -10,12 +10,13 @@ import {
   userSelector,
   userTeamSelector,
 } from "../../store/reducers/userReducer";
+import { IMG_POKEMON } from "../../constants";
 
 const CardPokemon = ({ element }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const pokeID = element.url.slice(42).replace("/", "");
-  const urlPokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png`;
+  const urlPokemon = IMG_POKEMON(pokeID);
   const userTeam = useSelector(userTeamSelector);
   const [isTeam, setIsTeam] = useState(false);
 

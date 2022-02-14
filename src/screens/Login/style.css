@@ -204,3 +204,9 @@
     100%{transform: scale(3);
         opacity: 0;}
 }
+
+.login-errors{
+    position: absolute;
+    top: -15px;
+    width: max-content;
+}
