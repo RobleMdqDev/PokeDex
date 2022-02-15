@@ -124,7 +124,7 @@ const DetailsPokemon = () => {
               </div>
             </div>
           </div>
-          <div className="DP-badges">
+          <div className="DP-badges DP-evolutions">
             {pokemonChainEvolution.map((evolutions) => (
               <Link key={evolutions.id} to={`/pokemon/${evolutions.id}`}>
                 <BadgeComponent evolutions={evolutions} />

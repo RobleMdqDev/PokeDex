@@ -2,14 +2,20 @@
 .DP-wrapper{    
     width: 100%;    
     min-height: 100vh;
-    padding: 30px;
+    padding: 30px 0;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 20px 0;    
+    margin: 20px 0;   
+    gap: 5px 20px; 
+}
+@media (max-width: 1200px) {
+    .DP-wrapper{
+        flex-direction: column;        
+    }
 }
 
 .DP-img-area{     
@@ -26,19 +32,30 @@
     box-shadow: 0 5px 15px rgba(8,7,16,0.6);   
     margin: 5px;   
 }
+
 .DP-inner-area{ 
-    position: relative;   
+    position: relative;
+    width: fit-content;
+    height: fit-content;   
     padding: 8px;
     border: none;
     border-radius: 50%;
     box-shadow: 0 5px 15px rgba(8,7,16,0.6);   
-    margin: 5px;    
+     
+    padding: 0;
+    background-color: #fff;   
 }
 
 .DP-img{    
-    min-width: 300px;
-    width: 400px; 
-    transition: all 0.5 ease-in-out;        
+    width: 100%;
+    transition: all 0.5 ease-in-out;               
+}
+
+@media (max-width: 700px) {
+    .DP-img-area{
+        width: 90%;
+        height: fit-content;
+    }        
 }
 
 .DP-inner-area:hover{
@@ -65,16 +82,21 @@
     display: flex;
     justify-content: space-between;   
     flex-direction: column;
-    padding: 30px;
-    height: 100%;   
-    min-width: 400px;
+    padding: 30px 10px;
+    height: 100%;    
     width: 500px;
+}
+@media (max-width: 500px) {
+    .DP-description-area{
+        width: 100%;        
+    }
 }
 
 .DP-badges{
     display: flex;
     flex-wrap: wrap; 
-    justify-content: space-around;   
+    justify-content: space-around;
+    flex-direction: row;   
     padding: 5px;
     border: none;
     border-radius: 5px;
@@ -82,6 +104,16 @@
     margin-bottom: 8px;    
 }
 
+.DP-evolutions{
+    flex-direction: column;
+}
+
+@media (max-width: 1300px) {
+    .DP-evolutions{
+        flex-direction: row; 
+    }
+   
+}
 .DP-badges a{
     text-decoration: none;
 }
@@ -119,9 +151,15 @@
 
 .DP-stats-items{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    height: 120px;
     
+}
+@media (max-width: 550px) {
+   .DP-stats-items{
+       height: fit-content;
+   } 
 }
 
 

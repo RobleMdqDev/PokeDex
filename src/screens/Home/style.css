@@ -1,5 +1,5 @@
 .home-background{
-    min-height: '100vh'; 
+    width: 100vw;
     display: 'flex'; 
     align-items: 'center'; 
     background-color: '#f2f2f2'; 
@@ -34,6 +34,6 @@
 }
 .home-pokeball:nth-child(3){
     width: 125px;
-    top: calc(80% + 700px);
-    left: 80%;
+    top: calc(85% + 700px);
+    right: 20px;
 }
